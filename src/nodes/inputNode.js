@@ -8,6 +8,7 @@ import {
   NodeSection,
   NodeButton,
 } from "./BaseNode";
+import { TextCursorInput } from "lucide-react";
 
 export const InputNode = ({ id, data }) => {
   const [state, updateState] = useNodeState(
@@ -49,20 +50,13 @@ export const InputNode = ({ id, data }) => {
     updateState("defaultValue", "");
   };
 
-  // Input icon
-  const InputIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-    </svg>
-  );
-
   return (
     <BaseNode
       id={id}
       data={data}
       title="Input"
       description="Pass data of different types into your workflow"
-      icon={<InputIcon />}
+      icon={<TextCursorInput size={16} />}
       outputHandles={[{ id: "value" }]}
       width={280}
     >
@@ -110,36 +104,21 @@ export const InputNode = ({ id, data }) => {
           helpText="Initial value for this input"
         />
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "var(--space-2)",
-          }}
-        >
+        <div className="flex items-center gap-2">
           <input
             type="checkbox"
             id="required"
             checked={state.required}
             onChange={handleRequiredChange}
-            style={{ margin: 0 }}
+            className="m-0"
           />
-          <label
-            htmlFor="required"
-            style={{ fontSize: "var(--text-xs)", color: "var(--neutral-700)" }}
-          >
+          <label htmlFor="required" className="text-xs text-neutral-700">
             Required field
           </label>
         </div>
       </NodeSection>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "var(--space-2)",
-          justifyContent: "flex-end",
-        }}
-      >
+      <div className="flex gap-2 justify-end">
         <NodeButton variant="secondary" onClick={resetToDefaults}>
           Reset
         </NodeButton>

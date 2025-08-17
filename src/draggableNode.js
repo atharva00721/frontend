@@ -5,12 +5,11 @@ import {
   Brain,
   ArrowLeft,
   Type,
+  ArrowUpDown,
+  GitBranch,
+  FileText,
   Globe,
-  Search,
-  Zap,
-  BarChart3,
-  HelpCircle,
-  Settings,
+  CheckCircle,
 } from "lucide-react";
 
 export const DraggableNode = ({ type, label }) => {
@@ -93,23 +92,6 @@ export const DraggableNode = ({ type, label }) => {
   );
 };
 
-// Helper function to get node colors
-const getNodeColor = (type) => {
-  const colors = {
-    customInput: "var(--primary-500)",
-    llm: "var(--purple-500)",
-    customOutput: "var(--success-500)",
-    text: "var(--neutral-500)",
-    webScraper: "var(--success-600)",
-    filter: "var(--warning-500)",
-    transformer: "var(--primary-600)",
-    aggregator: "var(--warning-600)",
-    condition: "var(--purple-600)",
-    flexible: "var(--neutral-600)",
-  };
-  return colors[type] || "var(--neutral-500)";
-};
-
 // Helper function to get node icons
 const getNodeIcon = (type) => {
   const icons = {
@@ -117,12 +99,12 @@ const getNodeIcon = (type) => {
     llm: <Brain className="size-4 text-black" />,
     customOutput: <ArrowLeft className="size-4 text-black" />,
     text: <Type className="size-4 text-black" />,
+    dataTransformer: <ArrowUpDown className="size-4 text-black" />,
+    conditional: <GitBranch className="size-4 text-black" />,
+    fileProcessor: <FileText className="size-4 text-black" />,
+    apiConnector: <Globe className="size-4 text-black" />,
+    dataValidator: <CheckCircle className="size-4 text-black" />,
     webScraper: <Globe className="size-4 text-black" />,
-    filter: <Search className="size-4 text-black" />,
-    transformer: <Zap className="size-4 text-black" />,
-    aggregator: <BarChart3 className="size-4 text-black" />,
-    condition: <HelpCircle className="size-4 text-black" />,
-    flexible: <Settings className="size-4 text-black" />,
   };
   return icons[type] || "•";
 };

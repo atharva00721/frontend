@@ -3,6 +3,7 @@
 
 import React from "react";
 import { BaseNode, useNodeState, NodeInput } from "./BaseNode";
+import { Settings } from "lucide-react";
 
 export const FlexibleNode = ({ id, data }) => {
   const [state, updateState] = useNodeState(
@@ -46,12 +47,14 @@ export const FlexibleNode = ({ id, data }) => {
       id={id}
       data={data}
       title="Flexible Node"
+      description="Dynamic node with flexible height"
+      icon={<Settings size={16} />}
       inputHandles={[{ id: "input" }]}
       outputHandles={[{ id: "output" }]}
       minHeight={100}
       customStyle={{
-        backgroundColor: "#e6f3ff",
-        borderColor: "#0066cc",
+        background: "#eff6ff",
+        borderColor: "#2563eb",
         borderStyle: "solid",
       }}
     >
@@ -74,15 +77,15 @@ export const FlexibleNode = ({ id, data }) => {
       />
 
       {state.nodeType === "complex" && (
-        <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+        <div className="text-xs text-neutral-500 mt-1">
+          <div className="flex items-center gap-1">
             <input
               type="checkbox"
               checked={state.showExtraFields}
               onChange={handleShowExtraFieldsChange}
-              style={{ width: "12px", height: "12px" }}
+              className="w-3 h-3"
             />
-            <label style={{ fontSize: "10px" }}>Show extra fields</label>
+            <label className="text-xs">Show extra fields</label>
           </div>
         </div>
       )}
@@ -113,21 +116,14 @@ export const FlexibleNode = ({ id, data }) => {
 
       {state.nodeType === "dynamic" && (
         <>
-          <div style={{ fontSize: "10px", color: "#666", marginTop: "4px" }}>
+          <div className="text-xs text-neutral-500 mt-1">
             Dynamic fields ({state.fieldCount}):
           </div>
           {dynamicFields}
         </>
       )}
 
-      <div
-        style={{
-          fontSize: "10px",
-          color: "#666",
-          marginTop: "4px",
-          fontStyle: "italic",
-        }}
-      >
+      <div className="text-xs text-neutral-500 mt-1 italic">
         This node demonstrates flexible height - it grows with content!
       </div>
     </BaseNode>

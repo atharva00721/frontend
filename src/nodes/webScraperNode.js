@@ -3,6 +3,7 @@
 
 import React from "react";
 import { BaseNode, useNodeState, NodeInput } from "./BaseNode";
+import { Globe } from "lucide-react";
 
 export const WebScraperNode = ({ id, data }) => {
   const [state, updateState] = useNodeState(
@@ -35,19 +36,14 @@ export const WebScraperNode = ({ id, data }) => {
     <BaseNode
       id={id}
       data={data}
-      title={
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-success-500 rounded-md flex items-center justify-center text-white text-xs font-semibold">
-            🌐
-          </div>
-          <span>Web Scraper</span>
-        </div>
-      }
+      title="Web Scraper"
+      description="Fetch content from URLs"
+      icon={<Globe size={16} />}
       inputHandles={[{ id: "trigger" }]}
       outputHandles={[{ id: "content" }, { id: "status" }]}
       customStyle={{
-        backgroundColor: "white",
-        borderColor: "var(--success-300)",
+        background: "white",
+        borderColor: "#86efac",
         borderWidth: "2px",
       }}
     >

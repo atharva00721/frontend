@@ -2,19 +2,23 @@
 
 import React from "react";
 import { BaseNode, useNodeState, NodeInput } from "./BaseNode";
+import { ArrowLeft } from "lucide-react";
 
 export const OutputNode = ({ id, data }) => {
-  const [state, updateState] = useNodeState({
-    outputName: id.replace("customOutput-", "output_"),
-    outputType: "Text"
-  }, data);
+  const [state, updateState] = useNodeState(
+    {
+      outputName: id.replace("customOutput-", "output_"),
+      outputType: "Text",
+    },
+    data
+  );
 
   const handleNameChange = (e) => {
-    updateState('outputName', e.target.value);
+    updateState("outputName", e.target.value);
   };
 
   const handleTypeChange = (e) => {
-    updateState('outputType', e.target.value);
+    updateState("outputType", e.target.value);
   };
 
   return (
@@ -22,7 +26,9 @@ export const OutputNode = ({ id, data }) => {
       id={id}
       data={data}
       title="Output"
-      inputHandles={[{ id: 'value' }]}
+      description="Display or export workflow results"
+      icon={<ArrowLeft size={16} />}
+      inputHandles={[{ id: "value" }]}
     >
       <NodeInput
         label="Name"
@@ -36,7 +42,7 @@ export const OutputNode = ({ id, data }) => {
         type="select"
         options={[
           { value: "Text", label: "Text" },
-          { value: "File", label: "Image" }
+          { value: "File", label: "Image" },
         ]}
       />
     </BaseNode>

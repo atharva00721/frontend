@@ -10,12 +10,12 @@ import { InputNode } from "./nodes/inputNode";
 import { LLMNode } from "./nodes/llmNode";
 import { OutputNode } from "./nodes/outputNode";
 import { TextNode } from "./nodes/textNode";
+import { DataTransformerNode } from "./nodes/dataTransformerNode";
+import { ConditionalNode } from "./nodes/conditionalNode";
+import { FileProcessorNode } from "./nodes/fileProcessorNode";
+import { APIConnectorNode } from "./nodes/apiConnectorNode";
+import { DataValidatorNode } from "./nodes/dataValidatorNode";
 import { WebScraperNode } from "./nodes/webScraperNode";
-import { FilterNode } from "./nodes/filterNode";
-import { TransformerNode } from "./nodes/transformerNode";
-import { AggregatorNode } from "./nodes/aggregatorNode";
-import { ConditionNode } from "./nodes/conditionNode";
-import { FlexibleNode } from "./nodes/flexibleNode";
 
 import "reactflow/dist/style.css";
 
@@ -26,12 +26,12 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  dataTransformer: DataTransformerNode,
+  conditional: ConditionalNode,
+  fileProcessor: FileProcessorNode,
+  apiConnector: APIConnectorNode,
+  dataValidator: DataValidatorNode,
   webScraper: WebScraperNode,
-  filter: FilterNode,
-  transformer: TransformerNode,
-  aggregator: AggregatorNode,
-  condition: ConditionNode,
-  flexible: FlexibleNode,
 };
 
 const selector = (state) => ({

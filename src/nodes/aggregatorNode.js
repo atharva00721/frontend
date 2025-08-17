@@ -3,6 +3,7 @@
 
 import React from "react";
 import { BaseNode, useNodeState, NodeInput } from "./BaseNode";
+import { BarChart3 } from "lucide-react";
 
 export const AggregatorNode = ({ id, data }) => {
   const [state, updateState] = useNodeState(
@@ -40,13 +41,12 @@ export const AggregatorNode = ({ id, data }) => {
       id={id}
       data={data}
       title="Aggregator"
+      description="Combine multiple inputs into one output"
+      icon={<BarChart3 size={16} />}
       inputHandles={inputHandles}
       outputHandles={[{ id: "result" }]}
       minHeight={Math.max(80, 60 + parseInt(state.maxInputs) * 10)}
-      customStyle={{
-        backgroundColor: "#faf0e6",
-        borderColor: "#daa520",
-      }}
+      customStyle={{ background: "#fff7ed", borderColor: "#f97316" }}
     >
       <NodeInput
         label="Aggregation Type"
@@ -75,7 +75,7 @@ export const AggregatorNode = ({ id, data }) => {
         onChange={handleMaxInputsChange}
         type="number"
       />
-      <div style={{ fontSize: "10px", color: "#666", marginTop: "2px" }}>
+      <div className="text-xs text-neutral-500 mt-0.5">
         {inputHandles.length} input handles
       </div>
     </BaseNode>
