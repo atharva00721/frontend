@@ -1,47 +1,44 @@
 // outputNode.js
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import React from "react";
+import { BaseNode, useNodeState, NodeInput } from "./BaseNode";
 
 export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
+  const [state, updateState] = useNodeState({
+    outputName: id.replace("customOutput-", "output_"),
+    outputType: "Text"
+  }, data);
 
   const handleNameChange = (e) => {
-    setCurrName(e.target.value);
+    updateState('outputName', e.target.value);
   };
 
   const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
+    updateState('outputType', e.target.value);
   };
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
+    <BaseNode
+      id={id}
+      data={data}
+      title="Output"
+      inputHandles={[{ id: 'value' }]}
+    >
+      <NodeInput
+        label="Name"
+        value={state.outputName}
+        onChange={handleNameChange}
       />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
-        </label>
-      </div>
-    </div>
+      <NodeInput
+        label="Type"
+        value={state.outputType}
+        onChange={handleTypeChange}
+        type="select"
+        options={[
+          { value: "Text", label: "Text" },
+          { value: "File", label: "Image" }
+        ]}
+      />
+    </BaseNode>
   );
-}
+};

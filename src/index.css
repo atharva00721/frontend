@@ -1,13 +1,98 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import our design system */
+@import './styles/design-system.css';
+
+/* ReactFlow specific overrides */
+.react-flow__node {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--neutral-200);
+  background: white;
+  transition: all var(--transition-normal);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.react-flow__node:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-500);
+  border: 2px solid white;
+  box-shadow: var(--shadow-sm);
+}
+
+.react-flow__handle:hover {
+  background: var(--primary-600);
+  transform: scale(1.2);
+}
+
+.react-flow__edge-path {
+  stroke: var(--neutral-400);
+  stroke-width: 2;
+  stroke-dasharray: 5,5;
+}
+
+.react-flow__edge-path:hover {
+  stroke: var(--primary-500);
+  stroke-width: 3;
+}
+
+.react-flow__controls {
+  background: white;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__controls button {
+  background: white;
+  border: 1px solid var(--neutral-200);
+  color: var(--neutral-700);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.react-flow__controls button:hover {
+  background: var(--neutral-50);
+  color: var(--neutral-900);
+  border-color: var(--neutral-300);
+}
+
+.react-flow__minimap {
+  background: white;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__background {
+  background-color: var(--neutral-100);
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--neutral-300) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Custom scrollbar for the entire app */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
 }
